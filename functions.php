@@ -27,3 +27,24 @@ require_once CUSTOM_THEME_DIR . 'inc/enqueue-source.php';
 
 // Supports.
 require_once CUSTOM_THEME_DIR . 'inc/supports.php';
+
+
+function my_custom_menu_page()
+{
+    add_menu_page(
+        'Chat OpenAI',
+        'Chat OpenAI', // Título del menú
+        'manage_options', // Capacidad
+        'chat-openai', // Slug del menú
+        'my_custom_menu_page_html', // Función de contenido
+        'dashicons-format-chat', // Icono del menú
+        20 // Posición
+    );
+}
+add_action('admin_menu', 'my_custom_menu_page');
+
+
+function my_custom_menu_page_html()
+{
+    get_template_part('parts/chat-openai');
+}

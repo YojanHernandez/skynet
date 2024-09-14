@@ -12,5 +12,8 @@
 	"license": "ISC",
 	"devDependencies": {
 		"@wordpress/scripts": "^28.6.0"
+	},
+	"dependencies": {
+		"openai": "^4.61.0"
 	}
 }
