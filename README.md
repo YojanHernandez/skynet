@@ -51,4 +51,5 @@ This theme depends on:
 
 - **WordPress** (version 6.0 or higher)
 - **PHP** (version 7.4 or higher)
+- **openai** (version 4.61.0)
 - **An AI API key** (e.g., OpenAI or similar)
