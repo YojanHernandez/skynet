@@ -25,9 +25,12 @@ async function getOpenAIResponse() {
     role: "user",
     content: userInput
   };
+  const prompt = [..._variables_js__WEBPACK_IMPORTED_MODULE_1__.context, userInput];
+  console.log("Prompt:");
+  console.log(prompt);
   (0,_userInput_js__WEBPACK_IMPORTED_MODULE_0__.cleanInputField)(_variables_js__WEBPACK_IMPORTED_MODULE_1__.inputField);
   let responseData = await openai.chat.completions.create({
-    messages: [..._variables_js__WEBPACK_IMPORTED_MODULE_1__.context, userInput],
+    messages: prompt,
     model: "gpt-4o"
   });
   (0,_userInput_js__WEBPACK_IMPORTED_MODULE_0__.createBotMessage)(responseData, _variables_js__WEBPACK_IMPORTED_MODULE_1__.chatLog);
@@ -47,6 +50,39 @@ if (_variables_js__WEBPACK_IMPORTED_MODULE_1__.inputField) {
 
 /***/ }),
 
+/***/ "./src/js/createWordpressPage.js":
+/*!***************************************!*\
+  !*** ./src/js/createWordpressPage.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   createWordPressPage: () => (/* binding */ createWordPressPage)
+/* harmony export */ });
+async function createWordPressPage(pageTitle, pageContent) {
+  const url = '/wp-json/custom-theme/v1/create-page';
+  const data = {
+    title: pageTitle,
+    content: pageContent
+  };
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+    console.log('Menu item created successfully:', response);
+  } catch (error) {
+    console.error('Error creating menu item:', error);
+  }
+}
+
+/***/ }),
+
 /***/ "./src/js/userInput.js":
 /*!*****************************!*\
   !*** ./src/js/userInput.js ***!
@@ -60,6 +96,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   createBotMessage: () => (/* binding */ createBotMessage),
 /* harmony export */   createUserMessage: () => (/* binding */ createUserMessage)
 /* harmony export */ });
+/* harmony import */ var _createWordpressPage_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./createWordpressPage.js */ "./src/js/createWordpressPage.js");
+
 function createUserMessage(inputField, chatLog) {
   // Mostrar el input del usuario en el chat
   let userMessage = document.createElement("p");
@@ -80,8 +118,24 @@ function createBotMessage(responseData, chatLog) {
 
   // Mostrar la respuesta del bot en el chat
   if (responseData.choices && responseData.choices.length > 0) {
+    console.log("Respuesta:");
     console.log(responseData.choices[0].message.content);
-    botMessage.textContent = responseData.choices[0].message.content;
+    const content = responseData.choices[0].message.content;
+
+    // Verificar si el contenido incluye "{ page: " y "content: "
+    const regex = /{ page: "([^"]+)", content: "([^"]+)" }/;
+    const match = content.match(regex);
+    if (match) {
+      const response = {
+        page: match[1],
+        content: match[2]
+      };
+      console.log(response);
+      (0,_createWordpressPage_js__WEBPACK_IMPORTED_MODULE_0__.createWordPressPage)(response.page, response.content);
+      botMessage.textContent = "Page created successfully";
+    } else {
+      botMessage.textContent = content;
+    }
   } else {
     console.error("Unexpected response structure:", responseData);
     botMessage.textContent = "Error: Unexpected response from OpenAI";

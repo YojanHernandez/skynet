@@ -1,7 +1,7 @@
 import {
     createUserMessage,
     cleanInputField,
-    createBotMessage,
+    createBotMessage
 } from "./userInput.js";
 
 import {
@@ -11,6 +11,7 @@ import {
     chatLog,
     context,
 } from "./variables.js";
+
 
 import OpenAI from "openai";
 
@@ -24,10 +25,14 @@ async function getOpenAIResponse() {
         content: userInput,
     };
 
+    const prompt = [...context, userInput];
+    console.log("Prompt:");
+    console.log(prompt);
+
     cleanInputField(inputField);
 
     let responseData = await openai.chat.completions.create({
-        messages: [...context, userInput],
+        messages: prompt,
         model: "gpt-4o",
     });
 
