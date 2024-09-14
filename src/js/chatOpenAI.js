@@ -1,38 +1,48 @@
 import {
-  createUserMessage,
-  cleanInputField,
-  createBotMessage,
+    createUserMessage,
+    cleanInputField,
+    createBotMessage,
 } from "./userInput.js";
 
-import { myApiKey, sendButton, inputField, chatLog } from "./variables.js";
+import {
+    myApiKey,
+    sendButton,
+    inputField,
+    chatLog,
+    context,
+} from "./variables.js";
 
 import OpenAI from "openai";
 
 const openai = new OpenAI({ apiKey: myApiKey, dangerouslyAllowBrowser: true });
 
+
 async function getOpenAIResponse() {
-  let userInput = createUserMessage(inputField, chatLog);
-  cleanInputField(inputField);
+    let userInput = createUserMessage(inputField, chatLog);
+    userInput = {
+        role: "user",
+        content: userInput,
+    };
 
-  let responseData = await openai.completions.create({
-    model: "gpt-3.5-turbo-instruct",
-    prompt: userInput,
-    max_tokens: 7,
-    temperature: 0,
-  });
+    cleanInputField(inputField);
 
-  createBotMessage(responseData, chatLog);
+    let responseData = await openai.chat.completions.create({
+        messages: [...context, userInput],
+        model: "gpt-4o",
+    });
+
+    createBotMessage(responseData, chatLog);
 }
 
 // Event listeners
 if (sendButton) {
-  sendButton.addEventListener("click", getOpenAIResponse);
+    sendButton.addEventListener("click", getOpenAIResponse);
 }
 
 if (inputField) {
-  inputField.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") {
-      getOpenAIResponse();
-    }
-  });
+    inputField.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+            getOpenAIResponse();
+        }
+    });
 }

@@ -21,12 +21,14 @@ const openai = new openai__WEBPACK_IMPORTED_MODULE_2__["default"]({
 });
 async function getOpenAIResponse() {
   let userInput = (0,_userInput_js__WEBPACK_IMPORTED_MODULE_0__.createUserMessage)(_variables_js__WEBPACK_IMPORTED_MODULE_1__.inputField, _variables_js__WEBPACK_IMPORTED_MODULE_1__.chatLog);
+  userInput = {
+    role: "user",
+    content: userInput
+  };
   (0,_userInput_js__WEBPACK_IMPORTED_MODULE_0__.cleanInputField)(_variables_js__WEBPACK_IMPORTED_MODULE_1__.inputField);
-  let responseData = await openai.completions.create({
-    model: "gpt-3.5-turbo-instruct",
-    prompt: userInput,
-    max_tokens: 7,
-    temperature: 0
+  let responseData = await openai.chat.completions.create({
+    messages: [..._variables_js__WEBPACK_IMPORTED_MODULE_1__.context, userInput],
+    model: "gpt-4o"
   });
   (0,_userInput_js__WEBPACK_IMPORTED_MODULE_0__.createBotMessage)(responseData, _variables_js__WEBPACK_IMPORTED_MODULE_1__.chatLog);
 }
@@ -78,8 +80,8 @@ function createBotMessage(responseData, chatLog) {
 
   // Mostrar la respuesta del bot en el chat
   if (responseData.choices && responseData.choices.length > 0) {
-    console.log(responseData.choices[0].text);
-    botMessage.textContent = responseData.choices[0].text;
+    console.log(responseData.choices[0].message.content);
+    botMessage.textContent = responseData.choices[0].message.content;
   } else {
     console.error("Unexpected response structure:", responseData);
     botMessage.textContent = "Error: Unexpected response from OpenAI";
@@ -100,6 +102,7 @@ function createBotMessage(responseData, chatLog) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   chatLog: () => (/* binding */ chatLog),
+/* harmony export */   context: () => (/* binding */ context),
 /* harmony export */   inputField: () => (/* binding */ inputField),
 /* harmony export */   myApiKey: () => (/* binding */ myApiKey),
 /* harmony export */   sendButton: () => (/* binding */ sendButton)
@@ -109,6 +112,124 @@ const myApiKey = "sk-Eiv3GSuBWxfUpFIys06L60w6-NFRDen1RJm0VhDnwcT3BlbkFJLTTfyQ9dX
 const sendButton = (_document$getElementB = document.getElementById("send-btn")) !== null && _document$getElementB !== void 0 ? _document$getElementB : "";
 const inputField = (_document$getElementB2 = document.getElementById("user-input")) !== null && _document$getElementB2 !== void 0 ? _document$getElementB2 : "";
 const chatLog = (_document$getElementB3 = document.getElementById("chat-log")) !== null && _document$getElementB3 !== void 0 ? _document$getElementB3 : "";
+const context = [{
+  role: "system",
+  content: "You are a virtual assistant for a CMS that helps users create features in WordPress."
+}, {
+  role: "system",
+  content: "You can assist in creating pages, posts, and other functionalities in WordPress."
+}, {
+  role: "system",
+  content: "If the user asks for help to create a page, you should ask for the page name and content."
+}, {
+  role: "system",
+  content: "Always respond as the assistant and never as the user."
+}, {
+  role: "system",
+  content: "Example 1:"
+}, {
+  role: "user",
+  content: "Can you help me create a page?"
+}, {
+  role: "assistant",
+  content: "Sure! What would you like to name the page?"
+}, {
+  role: "user",
+  content: "About Us"
+}, {
+  role: "assistant",
+  content: "Great! What content would you like to include on the 'About Us' page?"
+}, {
+  role: "user",
+  content: "We are a company that values excellence and innovation."
+}, {
+  role: "assistant",
+  content: '{ page: "About Us", content: "We are a company that values excellence and innovation." }'
+}, {
+  role: "system",
+  content: "Example 2:"
+}, {
+  role: "user",
+  content: "I need to create a contact page."
+}, {
+  role: "assistant",
+  content: "Of course! What would you like to name the page?"
+}, {
+  role: "user",
+  content: "Contact Us"
+}, {
+  role: "assistant",
+  content: "Excellent! What content would you like to include on the 'Contact Us' page?"
+}, {
+  role: "user",
+  content: "Please reach out to us via email at contact@example.com."
+}, {
+  role: "assistant",
+  content: '{ page: "Contact Us", content: "Please reach out to us via email at contact@example.com." }'
+}, {
+  role: "system",
+  content: "Example 3:"
+}, {
+  role: "user",
+  content: "Help me create a services page."
+}, {
+  role: "assistant",
+  content: "Sure! What would you like to name the page?"
+}, {
+  role: "user",
+  content: "Our Services"
+}, {
+  role: "assistant",
+  content: "Great! What content would you like to include on the 'Our Services' page?"
+}, {
+  role: "user",
+  content: "We offer web development, SEO, and digital marketing services."
+}, {
+  role: "assistant",
+  content: '{ page: "Our Services", content: "We offer web development, SEO, and digital marketing services." }'
+}, {
+  role: "system",
+  content: "Example 4:"
+}, {
+  role: "user",
+  content: "Can you assist me in creating a blog page?"
+}, {
+  role: "assistant",
+  content: "Absolutely! What would you like to name the page?"
+}, {
+  role: "user",
+  content: "Blog"
+}, {
+  role: "assistant",
+  content: "Wonderful! What content would you like to include on the 'Blog' page?"
+}, {
+  role: "user",
+  content: "This is where we will share our latest news and updates."
+}, {
+  role: "assistant",
+  content: '{ page: "Blog", content: "This is where we will share our latest news and updates." }'
+}, {
+  role: "system",
+  content: "Example 5:"
+}, {
+  role: "user",
+  content: "I need help creating a portfolio page."
+}, {
+  role: "assistant",
+  content: "Sure! What would you like to name the page?"
+}, {
+  role: "user",
+  content: "Portfolio"
+}, {
+  role: "assistant",
+  content: "Great! What content would you like to include on the 'Portfolio' page?"
+}, {
+  role: "user",
+  content: "Here are some of our recent projects."
+}, {
+  role: "assistant",
+  content: '{ page: "Portfolio", content: "Here are some of our recent projects." }'
+}];
 
 /***/ }),
 
