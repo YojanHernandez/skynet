@@ -1,0 +1,140 @@
+{
+	"$schema": "https://schemas.wp.org/wp/6.6/theme.json",
+	"version": 3,
+	"settings": {
+		"typography": {
+			"defaultFontSizes": false,
+			"fontFamilies": [
+				{
+					"name": "Sans serif",
+					"slug": "default",
+					"fontFamily": "sans-serif"
+				}
+			],
+			"fontSizes": [
+				{
+					"name": "Body",
+					"slug": "body",
+					"size": "1.125rem"
+				},
+				{
+					"name": "Heading-1",
+					"slug": "heading-1",
+					"size": "6rem"
+				},
+				{
+					"name": "Heading-2",
+					"slug": "heading-2",
+					"size": "5rem"
+				},
+				{
+					"name": "Heading-3",
+					"slug": "heading-3",
+					"size": "3.5rem"
+				},
+				{
+					"name": "Heading-4",
+					"slug": "heading-4",
+					"size": "3"
+				},
+				{
+					"name": "Heading-5",
+					"slug": "heading-5",
+					"size": "2.25rem"
+				},
+				{
+					"name": "Heading-6",
+					"slug": "heading-6",
+					"size": "1.5rem"
+				}
+			]
+		},
+		"color": {
+			"customGradient": false,
+			"customDuotone": false,
+			"defaultGradients": false,
+			"defaultPalette": true
+		},
+		"spacing": {
+			"blockGap": true,
+			"customSpacingSize": true,
+			"margin": true,
+			"padding": true,
+			"defaultSpacingSizes": false,
+			"spacingSizes": [
+				{
+					"name": "Extra Small",
+					"slug": "extra-small",
+					"size": "0.25rem"
+				},
+				{
+					"name": "Small",
+					"slug": "small",
+					"size": "0.5rem"
+				},
+				{
+					"name": "Medium",
+					"slug": "medium",
+					"size": "1rem"
+				},
+				{
+					"name": "Large",
+					"slug": "large",
+					"size": "2rem"
+				},
+				{
+					"name": "Extra Large",
+					"slug": "extra-large",
+					"size": "4rem"
+				}
+			]
+		},
+		"layout": {
+			"wideSize": "1280px"
+		}
+	},
+	"styles": {
+		"typography": {
+			"fontFamily": "var:preset|font-family|default"
+		},
+		"spacing": {
+			"blockGap": "var:preset|spacing|extra-large"
+		},
+		"blocks": {
+			"core/post-title": {
+				"typography": {
+					"fontSize": "var:preset|font-size|preamble",
+					"fontWeight": "normal"
+				}
+			},
+			"core/heading": {
+				"typography": {
+					"fontSize": "var:preset|font-size|heading-2",
+					"fontWeight": "600"
+				}
+			},
+			"core/paragraph": {
+				"typography": {
+					"fontSize": "var:preset|font-size|body"
+				}
+			},
+			"core/table": {
+				"typography": {
+					"fontSize": "var:preset|font-size|body"
+				}
+			},
+			"core/media-text": {
+				"elements": {
+					"heading": {
+						"spacing": {
+							"margin": {
+								"bottom": "0px",
+								"top": "0px"
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

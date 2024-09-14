@@ -1,0 +1,24 @@
+@use "../tools/index" as breakpoints;
+
+:root {
+	--safe-top-padding: 90px;
+	--safe-top-padding-tablet: 60px;
+	--border-radius: 20px;
+	--smooth-easing: cubic-bezier(0.43, 0.05, 0.17, 1);
+
+	// Swiper CSS Variables
+	--swiper-pagination-color: #e84b24;
+	--swiper-pagination-bullet-width: 15px;
+	--swiper-pagination-bullet-size: 15px;
+	--swiper-pagination-bullet-inactive-color: #fff;
+	--swiper-pagination-bullet-inactive-opacity: 1;
+	--swiper-pagination-bullet-horizontal-gap: 8px;
+
+	@include breakpoints.small-break {
+		--border-radius: 12px;
+	}
+
+	@include breakpoints.mid-break {
+		--safe-top-padding: 60px;
+	}
+}

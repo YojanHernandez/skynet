@@ -1,0 +1,9 @@
+$breakpoint-s-width: 480px;
+$breakpoint-m-width: 768px;
+$breakpoint-l-width: 992px;
+
+:root {
+	--breakpoint-s-width: #{$breakpoint-s-width};
+	--breakpoint-m-width: #{$breakpoint-m-width};
+	--breakpoint-l-width: #{$breakpoint-l-width};
+}

@@ -1,0 +1,17 @@
+@use "../settings/settings.breakpoints" as breakpoints;
+
+@mixin small-break {
+	@media (max-width: breakpoints.$breakpoint-s-width) {
+		@content;
+	}
+}
+@mixin mid-break {
+	@media (max-width: breakpoints.$breakpoint-m-width) {
+		@content;
+	}
+}
+@mixin large-break {
+	@media (max-width: breakpoints.$breakpoint-l-width) {
+		@content;
+	}
+}

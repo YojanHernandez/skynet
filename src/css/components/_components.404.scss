@@ -1,0 +1,38 @@
+@use "../tools/tools.breakpoints" as breakpoints;
+
+.not-found-template {
+	text-align: center;
+	font-family: var(--wp--preset--font-family--default) !important;
+	padding: var(--wp--preset--spacing--large) var(--wp--preset--spacing--medium) !important;
+
+	&__heading {
+		margin-bottom: var(--wp--preset--spacing--large);
+		box-sizing: content-box;
+		font-size: 8rem;
+		font-weight: 800;
+
+		@include breakpoints.mid-break {
+			font-size: 8rem;
+		}
+
+		@include breakpoints.small-break {
+			font-size: 4rem !important;
+		}
+	}
+
+	&__paragraph {
+		margin-bottom: var(--wp--preset--spacing--large);
+		font-size: var(--wp--preset--font-size--body);
+	}
+
+	&__link {
+		background-color: var(--wp--preset--color--flame);
+		border-radius: 5px;
+		color: var(--wp--preset--color--white);
+		padding-top: 12.672px;
+		padding-right: 40px;
+		padding-left: 40px;
+		padding-bottom: 12.672px;
+		text-decoration: none;
+	}
+}

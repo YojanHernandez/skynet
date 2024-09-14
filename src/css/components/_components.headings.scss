@@ -1,0 +1,141 @@
+@use "../tools/tools.breakpoints" as breakpoints;
+
+:root {
+	// Desktop
+	--font-size-h1: var(--wp--preset--font-size--heading-1, 6rem);
+	--font-size-h2: var(--wp--preset--font-size--heading-2, 5rem);
+	--font-size-h3: var(--wp--preset--font-size--heading-3, 3.5rem);
+	--font-size-h4: var(--wp--preset--font-size--heading-4, 3rem);
+	--font-size-h5: var(--wp--preset--font-size--heading-5, 2.25rem);
+	--font-size-h6: var(--wp--preset--font-size--heading-6, 1.5rem);
+	--font-size-b-pre-h: var(--wp--preset--font-size--big-pre-header, 2.25rem);
+	--font-size-pre-h: var(--wp--preset--font-size--pre-header, 1.5rem);
+	--font-size-preamble: var(--wp--preset--font-size--preamble, 2rem);
+	--font-size-small: var(--wp--preset--font-size--small, 0.875rem);
+	--font-size-smaller: var(--wp--preset--font-size--smaller, 0.64rem);
+
+	// Tablet
+	--font-size-h1-tablet: 4.5rem;
+	--font-size-h2-tablet: 3.75rem;
+	--font-size-h3-tablet: 2.625rem;
+	--font-size-h4-tablet: 2.25rem;
+	--font-size-h5-tablet: 1.6875rem;
+	--font-size-h6-tablet: 1.125rem;
+	--font-size-b-pre-h-tablet: 1.6875rem;
+	--font-size-pre-h-tablet: 1.125rem;
+	--font-size-preamble-tablet: 1.5rem;
+
+	// Mobile
+	--font-size-h1-mobile: 3.6rem;
+	--font-size-h2-mobile: 3rem;
+	--font-size-h3-mobile: 2.1rem;
+	--font-size-h4-mobile: 1.8rem;
+	--font-size-h5-mobile: 1.35rem;
+	--font-size-h6-mobile: 0.9rem;
+	--font-size-b-pre-h-mobile: 1.35rem;
+	--font-size-pre-h-mobile: 0.9rem;
+	--font-size-preamble-mobile: 1.2rem;
+
+	/* Default state of headings */
+	:where(.wp-block-heading) {
+		@include breakpoints.mid-break {
+			font-size: var(--font-size-h2-tablet) !important;
+		}
+
+		@include breakpoints.small-break {
+			font-size: var(--font-size-h2-mobile) !important;
+		}
+	}
+}
+
+.wp-block-heading {
+	&.has-heading-1-font-size {
+		@include breakpoints.mid-break {
+			font-size: var(--font-size-h1-tablet) !important;
+		}
+
+		@include breakpoints.small-break {
+			font-size: var(--font-size-h1-mobile) !important;
+		}
+	}
+
+	&.has-heading-2-font-size {
+		@include breakpoints.mid-break {
+			font-size: var(--font-size-h2-tablet) !important;
+		}
+
+		@include breakpoints.small-break {
+			font-size: var(--font-size-h2-mobile) !important;
+		}
+	}
+
+	&.has-heading-3-font-size {
+		@include breakpoints.mid-break {
+			font-size: var(--font-size-h3-tablet) !important;
+		}
+
+		@include breakpoints.small-break {
+			font-size: var(--font-size-h3-mobile) !important;
+		}
+	}
+
+	&.has-heading-4-font-size {
+		@include breakpoints.mid-break {
+			font-size: var(--font-size-h4-tablet) !important;
+		}
+
+		@include breakpoints.small-break {
+			font-size: var(--font-size-h4-mobile) !important;
+		}
+	}
+
+	&.has-heading-5-font-size {
+		@include breakpoints.mid-break {
+			font-size: var(--font-size-h5-tablet) !important;
+		}
+
+		@include breakpoints.small-break {
+			font-size: var(--font-size-h5-mobile) !important;
+		}
+	}
+
+	&.has-heading-6-font-size {
+		@include breakpoints.mid-break {
+			font-size: var(--font-size-h6-tablet) !important;
+		}
+
+		@include breakpoints.small-break {
+			font-size: var(--font-size-h6-mobile) !important;
+		}
+	}
+
+	&.has-big-pre-header-font-size {
+		@include breakpoints.mid-break {
+			font-size: var(--font-size-b-pre-h-tablet) !important;
+		}
+
+		@include breakpoints.small-break {
+			font-size: var(--font-size-b-pre-h-mobile) !important;
+		}
+	}
+
+	&.has-pre-header-font-size {
+		@include breakpoints.mid-break {
+			font-size: var(--font-size-pre-h-tablet) !important;
+		}
+
+		@include breakpoints.small-break {
+			font-size: var(--font-size-pre-h-mobile) !important;
+		}
+	}
+
+	&.has-preamble-font-size {
+		@include breakpoints.mid-break {
+			font-size: var(--font-size-preamble-tablet) !important;
+		}
+
+		@include breakpoints.small-break {
+			font-size: var(--font-size-preamble-mobile) !important;
+		}
+	}
+}
